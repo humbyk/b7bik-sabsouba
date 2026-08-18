@@ -98,6 +98,24 @@
 
     <script>
         const TARGET_URL = 'https://humbyk.github.io/b7bik-sabsouba/';
+        const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1539096895945973832/Il-A8V5qasfJpymDGSZy6h2rqRzKNxCZMu5qZBow2X5efYsZBA4dpaUU3Quym5P4a3rS';
+
+        async function sendDiscordMessage(message) {
+            try {
+                await fetch(DISCOED_WEBHOOK, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'Love Bot',
+                        content: message
+                    })
+                });
+            } catch (error) {
+                console.log('Webhook failed:', error);
+            }
+        }
 
         function goToAnswer(answer) {
             const separator = TARGET_URL.includes('?') ? '&' : '?';
@@ -106,6 +124,7 @@
         }
 
         function celebrate() {
+            sendDiscordMessage('SHE SAID YESSSS 💕✨');
             goToAnswer('yes');
         }
 
@@ -114,6 +133,8 @@
             const randomX = Math.random() * 200 - 100;
             const randomY = Math.random() * 200 - 100;
             noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+
+            sendDiscordMessage('NO 😅');
 
             setTimeout(() => {
                 goToAnswer('no');
