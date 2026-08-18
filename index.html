@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="preconnect" href="https://www.youtube.com">
-    <meta name="preconnect" href="https://www.youtube-nocookie.com/embed/t1dvrcqlQgI">
     <title>💕 A Special Ask 💕</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,7 +72,10 @@
     </style>
 </head>
 <body>
-    <iframe id="bgMusic" style="display:none;" loading="eager" src="https://www.youtube-nocookie.com/embed/t1dvrcqlQgI?start=48&autoplay=1&loop=1&playlist=t1dvrcqlQgI&controls=0&rel=0&modestbranding=1&fs=0" allow="autoplay; encrypted-media" allowfullscreen="false"></iframe>
+    <audio id="bgMusic" autoplay loop>
+        <source src="https://limewire.com/d/PGMrc#UUXZrjnQyB" type="audio/mpeg">
+    </audio>
+
     <div class="container">
         <div class="hearts">💕 ✨ 💕</div>
         <div class="big-heart">💗</div>
@@ -103,7 +104,9 @@
         function showAnswer(answer) {
             const answerText = answer === 'yes' ? 'She said yes 💕' : 'She said no 😅';
             document.body.innerHTML = `
-                <iframe id="bgMusic" style="display:none;" loading="eager" src="https://www.youtube-nocookie.com/embed/t1dvrcqlQgI?start=48&autoplay=1&loop=1&playlist=t1dvrcqlQgI&controls=0&rel=0&modestbranding=1&fs=0" allow="autoplay; encrypted-media" allowfullscreen="false"></iframe>
+                <audio id="bgMusic" autoplay loop>
+                    <source src="https://limewire.com/d/PGMrc#UUXZrjnQyB" type="audio/mpeg">
+                </audio>
                 <div class="container">
                     <div class="hearts">💕 ✨ 💕</div>
                     <div class="big-heart">${answer === 'yes' ? '💗' : '💔'}</div>
