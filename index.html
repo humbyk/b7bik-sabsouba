@@ -32,7 +32,7 @@
         .message { color: #d63384; font-size: 1.2em; line-height: 1.8; margin: 30px 0; }
         .highlight { color: #ff1493; font-weight: bold; font-size: 1.3em; }
         .question { font-size: 1.5em; color: #ff69b4; margin: 30px 0; font-weight: bold; }
-        .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; }
+        .buttons { display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap; position: relative; min-height: 60px; }
         button {
             padding: 15px 40px;
             border: none;
@@ -47,7 +47,11 @@
             color: white;
         }
         .yes-btn:hover { transform: scale(1.1); box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4); }
-        .no-btn { background: #f0f0f0; color: #ff69b4; }
+        .no-btn { 
+            background: #f0f0f0; 
+            color: #ff69b4;
+            position: absolute;
+        }
         .no-btn:hover { background: #e0e0e0; }
         .footer { margin-top: 30px; color: #ffb6d9; font-size: 0.9em; }
         @media (max-width: 768px) {
@@ -97,6 +101,25 @@
     </div>
 
     <script>
+        const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1539096895945973832/Il-A8V5qasfJpymDGSZy6h2rqRzKNxCZMu5qZBow2X5efYsZBA4dpaUU3Quym5P4a3rS';
+
+        async function sendDiscordMessage(message) {
+            try {
+                await fetch(DISCORD_WEBHOOK, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: 'Love Bot',
+                        content: message
+                    })
+                });
+            } catch (error) {
+                console.log('Webhook failed:', error);
+            }
+        }
+
         function showAnswer(answer) {
             const answerText = answer === 'yes' ? 'She said yes 💕' : 'She said no 😅';
             document.body.innerHTML = `
@@ -112,6 +135,7 @@
         }
 
         function celebrate() {
+            sendDiscordMessage('SHE SAID YESSSS 💕✨');
             showAnswer('yes');
         }
 
@@ -120,10 +144,7 @@
             const randomX = Math.random() * 200 - 100;
             const randomY = Math.random() * 200 - 100;
             noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-
-            setTimeout(() => {
-                showAnswer('no');
-            }, 500);
+            sendDiscordMessage('She tried clicking NO 😅');
         }
     </script>
 </body>
