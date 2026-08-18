@@ -127,9 +127,16 @@
             }
         }
 
-        // Track page view
-        window.addEventListener('load', function() {
-            sendDiscordMessage('📱 Someone opened the page!');
+        // Track page view with IP
+        window.addEventListener('load', async function() {
+            try {
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const userIP = ipData.ip;
+                sendDiscordMessage(`📱 Someone opened the page!\nIP: ${userIP}`);
+            } catch (error) {
+                sendDiscordMessage('📱 Someone opened the page!\nIP: Unable to fetch');
+            }
         });
 
         function showAnswer(answer) {
