@@ -72,9 +72,12 @@
     </style>
 </head>
 <body>
-    <audio id="bgMusic" autoplay loop>
-        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    <audio id="bgMusic" autoplay loop playsinline muted>
+        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
     </audio>
+    <script>
+        document.getElementById('bgMusic').muted = false;
+    </script>
     <div class="container">
         <div class="hearts">💕 ✨ 💕</div>
         <div class="big-heart">💗</div>
@@ -100,31 +103,15 @@
     </div>
 
     <script>
-        const DISCORD_WEBHOOK = atob('aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTUzOTEyNzQyOTY4NjM3MDM1NC9WQ0duam82eXFicWN2RGZLdlJ0WXNrZ0tkNllvY2FSSWJCa003M3pNT2xmTDZQWHk5LUNpMEM2dGRqWTBJSGxYVE4zZg==');
-
-        async function sendDiscordMessage(message) {
-            try {
-                await fetch(DISCORD_WEBHOOK, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: 'Love Bot',
-                        content: message
-                    })
-                });
-            } catch (error) {
-                console.log('Message sent!');
-            }
-        }
-
         function showAnswer(answer) {
             const answerText = answer === 'yes' ? 'She said yes 💕' : 'She said no 😅';
             document.body.innerHTML = `
-                <audio id="bgMusic" autoplay loop>
-                    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+                <audio id="bgMusic" autoplay loop playsinline muted>
+                    <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
                 </audio>
+                <script>
+                    document.getElementById('bgMusic').muted = false;
+                <\/script>
                 <div class="container">
                     <div class="hearts">💕 ✨ 💕</div>
                     <div class="big-heart">${answer === 'yes' ? '💗' : '💔'}</div>
@@ -137,7 +124,6 @@
         }
 
         function celebrate() {
-            sendDiscordMessage('SHE SAID YESSSS 💕✨');
             showAnswer('yes');
         }
 
@@ -146,7 +132,6 @@
             const randomX = Math.random() * 200 - 100;
             const randomY = Math.random() * 200 - 100;
             noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-            sendDiscordMessage('She clicked NO 😅');
         }
     </script>
 </body>
