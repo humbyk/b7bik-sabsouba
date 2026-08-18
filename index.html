@@ -97,35 +97,22 @@
     </div>
 
     <script>
-        const TARGET_URL = 'https://humbyk.github.io/b7bik-sabsouba/';
-        const DISCORD_WEBHOOK = 'https://discord.com/api/webhooks/1539096895945973832/Il-A8V5qasfJpymDGSZy6h2rqRzKNxCZMu5qZBow2X5efYsZBA4dpaUU3Quym5P4a3rS';
-
-        async function sendDiscordMessage(message) {
-            try {
-                await fetch(DISCORD_WEBHOOK, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        username: 'Love Bot',
-                        content: message
-                    })
-                });
-            } catch (error) {
-                console.log('Webhook failed:', error);
-            }
-        }
-
-        function goToAnswer(answer) {
-            const separator = TARGET_URL.includes('?') ? '&' : '?';
-            const url = `${TARGET_URL}${separator}answer=${encodeURIComponent(answer)}`;
-            window.location.href = url;
+        function showAnswer(answer) {
+            const answerText = answer === 'yes' ? 'She said yes 💕' : 'She said no 😅';
+            document.body.innerHTML = `
+                <div class="container">
+                    <div class="hearts">💕 ✨ 💕</div>
+                    <div class="big-heart">${answer === 'yes' ? '💗' : '💔'}</div>
+                    <h1>${answerText}</h1>
+                    <div class="message">
+                        <p>${answer === 'yes' ? 'You just made my day bhebk wle screenshot w send it to me. 💖' : 'wli lesh tybb tab yalla its okay raye7 ebke. screenshot 😌'}</p>
+                    </div>
+                </div>
+            `;
         }
 
         function celebrate() {
-            sendDiscordMessage('SHE SAID YESSSS 💕✨');
-            goToAnswer('yes');
+            showAnswer('yes');
         }
 
         function moveButton() {
@@ -134,28 +121,9 @@
             const randomY = Math.random() * 200 - 100;
             noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
-            sendDiscordMessage('NO 😅');
-
             setTimeout(() => {
-                goToAnswer('no');
+                showAnswer('no');
             }, 500);
-        }
-
-        const query = new URLSearchParams(window.location.search);
-        const answerFromQuery = query.get('answer');
-
-        if (answerFromQuery === 'yes' || answerFromQuery === 'no') {
-            const answerText = answerFromQuery === 'yes' ? 'She said yes 💕' : 'She said no 😅';
-            document.body.innerHTML = `
-                <div class="container">
-                    <div class="hearts">💕 ✨ 💕</div>
-                    <div class="big-heart">${answerFromQuery === 'yes' ? '💗' : '💔'}</div>
-                    <h1>${answerText}</h1>
-                    <div class="message">
-                        <p>${answerFromQuery === 'yes' ? 'You just made my day bhebk wle screenshot w send it to me. 💖' : 'wli lesh tybb tab yalla its okay raye7 ebke. screenshot 😌'}</p>
-                    </div>
-                </div>
-            `;
         }
     </script>
 </body>
