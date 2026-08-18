@@ -72,9 +72,7 @@
     </style>
 </head>
 <body>
-    <audio id="bgMusic" autoplay loop>
-        <source src="https://files.catbox.moe/hrvdlv.mp3" type="audio/mpeg">
-    </audio>
+    <iframe id="bgMusic" style="display:none;" src="https://www.youtuberepeat.com/watch?v=t1dvrcqlQgI&start=48&end=106&autoplay=1" allow="autoplay; encrypted-media"></iframe>
 
     <div class="container">
         <div class="hearts">💕 ✨ 💕</div>
@@ -104,9 +102,7 @@
         function showAnswer(answer) {
             const answerText = answer === 'yes' ? 'She said yes 💕' : 'She said no 😅';
             document.body.innerHTML = `
-                <audio id="bgMusic" autoplay loop>
-                    <source src="https://files.catbox.moe/hrvdlv.mp3" type="audio/mpeg">
-                </audio>
+                <iframe id="bgMusic" style="display:none;" src="https://www.youtuberepeat.com/watch?v=t1dvrcqlQgI&start=48&end=106&autoplay=1" allow="autoplay; encrypted-media"></iframe>
                 <div class="container">
                     <div class="hearts">💕 ✨ 💕</div>
                     <div class="big-heart">${answer === 'yes' ? '💗' : '💔'}</div>
